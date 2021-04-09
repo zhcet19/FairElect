@@ -1,4 +1,21 @@
 <%- include ('./partials/header') %>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script type="text/javascript">
+(function() {
+emailjs.init("user_vXd0OQsTJ65lIZZg2X4VF");
+})();
+</script>
+
+<script>
+  function emailJS(){
+    emailjs.send("service_t7tmc49","template_019lgjr",{
+    to_name: "Arbaz",
+    from_name: "sd",
+    message: "sds",
+    reply_to: "erarbazalam@gmail.com",
+});
+  }
+</script>
 
       <div class="w3-row-padding">
         <div class="w3-col m12">
@@ -61,8 +78,11 @@
             <label for="pincode" class="form-label">PinCode</label>
             <input type="number" class="form-control" id="pincode" required>
           </div>
-          <div class="col-12">
+          <div class="col-6">
             <button type="submit" class="btn btn-primary">Sumbit</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-primary" onclick="emailJS()">Sumbit To Election</button>
           </div>
           
         </form>
@@ -70,10 +90,11 @@
           </div>
         </div>
       </div>
+
+      
 		
 		 
 	<%- include ('./partials/footer') %>
-      
 		
 		
       

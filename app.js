@@ -20,7 +20,6 @@ mongoose.connect('mongodb://localhost:27017/facebook', {useNewUrlParser: true, u
 
 // Set EJS as templating engine  
 app.set("view engine", "ejs"); 
-
 app.use(require("express-session")(
 	{
 		secret:"i am faiz alam",
@@ -82,7 +81,7 @@ app.get('/images',isLoggedIn, (req, res) => {
 }); 
 // Uploading the image 
 app.post('/images', upload.single('image'), (req, res, next) => { 
-  
+    
     var obj = { 
         name: req.body.name, 
         desc: req.body.desc, 
@@ -96,6 +95,7 @@ app.post('/images', upload.single('image'), (req, res, next) => {
 		pincode:req.body.pincode,
 		email:req.body.email,
     } 
+    
     imgModel.create(obj, (err, item) => { 
         if (err) { 
             console.log(err); 
