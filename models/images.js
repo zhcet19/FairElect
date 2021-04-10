@@ -9,16 +9,16 @@ var imageSchema = new mongoose.Schema({
 		type:String, 
 		
 	},
+	epicno:{
+		type:Number,
+	},
     img: 
     { 
         data: Buffer, 
         contentType: String ,
 		
     } ,
-	localadd:{
-		type:String, 
-		
-	}, 
+	
 	city:{
 		type:String, 
 		

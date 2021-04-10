@@ -12,11 +12,14 @@ var imgModel = require('./models/images');
 var flash= require("connect-flash");
 var methodOverride = require("method-override");
 var app= express();
+//const MongoDBStore = require("connect") 
+//const dbUrl=process.env.DB_URL;
 app.use(express.json());
 app.use(flash());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 mongoose.connect('mongodb://localhost:27017/facebook', {useNewUrlParser: true, useUnifiedTopology: true});
+
 
 // Set EJS as templating engine  
 app.set("view engine", "ejs"); 
@@ -68,6 +71,16 @@ app.get('/detailsofcomplain',isLoggedIn, (req, res) => {
         } 
     }); 
 }); 
+app.get('/map',isLoggedIn, (req, res) => { 
+    imgModel.find({}, (err, items) => { 
+        if (err) { 
+            console.log(err); 
+        } 
+        else { 
+            res.render('map', { items: items }); 
+        } 
+    }); 
+}); 
 
 app.get('/images',isLoggedIn, (req, res) => { 
     imgModel.find({}, (err, items) => { 
@@ -89,7 +102,6 @@ app.post('/images', upload.single('image'), (req, res, next) => {
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)), 
             contentType: 'image/png'
         } ,
-		localadd: req.body.localadd,
 		city:req.body.city,
 		state:req.body.state,
 		pincode:req.body.pincode,
@@ -155,6 +167,7 @@ app.post("/register",function(req,res){
 app.get("/login",function(req,res){
 	res.render("login");
 })
+
 app.post("/login",passport.authenticate("local",{
 		successRedirect:"/",
 		failureRedirect:"/login"
