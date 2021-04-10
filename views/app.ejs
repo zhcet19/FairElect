@@ -8,14 +8,51 @@ emailjs.init("user_vXd0OQsTJ65lIZZg2X4VF");
 
 <script>
   function emailJS(){
+    var name="",desc="";
+    name=document.getElementById("name").value;
+    desc=document.getElementById("desc").value;
+    // let email=document.getElementById("email").value;
     emailjs.send("service_t7tmc49","template_019lgjr",{
-    to_name: "Arbaz",
-    from_name: "sd",
-    message: "sds",
-    reply_to: "erarbazalam@gmail.com",
-});
-  }
+    to_name: "Faiz",
+    from_name: "Fair Elect",
+    message: "Someone trying to disturb the voting",
+    reply_to: "faizamu19@gmail.com",
+    // console.log(name);
+  });
+  // console.log(typeof(email));
+  
+}
+function geoFindMe() {
+
+const status = document.querySelector('#status');
+const mapLink = document.querySelector('#map-link');
+
+mapLink.href = '';
+mapLink.textContent = '';
+
+function success(position) {
+  const latitude  = position.coords.latitude;
+  const longitude = position.coords.longitude;
+
+  status.textContent = '';
+  mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+  mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+}
+
+function error() {
+  status.textContent = 'Unable to retrieve your location';
+}
+
+if(!navigator.geolocation) {
+  status.textContent = 'Geolocation is not supported by your browser';
+} else {
+  status.textContent = 'Locating…';
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+
+}
 </script>
+
 
       <div class="w3-row-padding">
         <div class="w3-col m12">
@@ -63,8 +100,9 @@ emailjs.init("user_vXd0OQsTJ65lIZZg2X4VF");
 				<input type="file" id="image" name="image" value="" required> </span>
 			</div>	
           <div class="col-12">
-            <label for="localadd" class="form-label">Local Address</label>
-            <input type="text" class="form-control" id="localadd" placeholder="Enter location " required>
+            <button id = "find-me" onclick="geoFindMe()">Show my location</button><br/>
+            <p id = "status"></p>
+            <a id = "map-link" target="_blank"></a>            
           </div>
           <div class="col-md-6">
             <label for="city" class="form-label">City</label>
