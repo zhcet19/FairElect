@@ -971,8 +971,8 @@ section {
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+      <a href="/" class="logo d-flex align-items-center">
+        <img src="https://akm-img-a-in.tosshub.com/sites/btmt/images/stories/general-elections-2019-m_660_042919091753.jpg" alt="">
         <span>FairElect</span>
       </a>
 
@@ -986,7 +986,6 @@ section {
 		  <li><a class="nav-link scrollto" href="/login">Login</a></li>
           <li><a class="nav-link scrollto" href="/register">SignUp</a></li>
 			
-		<li><a class="getstarted scrollto" href="#about">Get Started</a></li>
 		  <%}	else  {%>
 			<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
@@ -996,7 +995,7 @@ section {
 		  <li><a class="nav-link scrollto" href="#">Signed as <%= currentUser.username %></a></li>
           <li><a class="nav-link scrollto" href="/logout">LogOut</a></li>
 			 <li><a class="nav-link scrollto" href="/map">DashBoard</a></li>
-			<li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+		
 				
 			<%	}	%> 
         </ul>
@@ -1058,12 +1057,6 @@ section {
               <p>
                 Use our website to report any unethical events such as bribing,pool capturing during elections.
               </p>
-              <div class="text-center text-lg-start">
-                <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_GO1gVD765QBdIh" async> </script> </form> </span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
-              </div>
             </div>
           </div>
 
@@ -1091,7 +1084,7 @@ section {
             <div class="accordion accordion-flush" id="faqlist1">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                 <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                    Who we are?
                   </button>
                 </h2>
@@ -1188,7 +1181,7 @@ section {
 
         <div class="row gy-4">
 
-          <div class="col-lg-6">
+          <div class="col-lg-12">
 
             <div class="row gy-4">
               <div class="col-md-6">
@@ -1223,11 +1216,6 @@ section {
 
           </div>
 
-          <div class="col-lg-6">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScjkVBzbatP-B8T74BvDWN6WNWWdUPgQnZyJa81DQMMd6klFg/viewform?embedded=true" width="640" height="852" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
-          </div>
-
         </div>
 
       </div>
@@ -1259,8 +1247,8 @@ section {
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
-            <a href="index.html" class="logo d-flex align-items-center">
-              <img src="assets/img/logo.png" alt="">
+            <a href="/" class="logo d-flex align-items-center">
+              <img src="https://akm-img-a-in.tosshub.com/sites/btmt/images/stories/general-elections-2019-m_660_042919091753.jpg" alt="">
               <span>FairElect</span>
             </a>
             <p>Democracy is democracy until citizens's vote is safe and just.</p>
@@ -1608,7 +1596,22 @@ section {
 
 })();
 	</script>
-
+<script>
+  var acc = document.getElementsByClassName("accordion-button");
+  var i;
+  
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
+  </script>
 </body>
 
 </html>

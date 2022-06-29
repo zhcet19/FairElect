@@ -11,14 +11,16 @@ var imageSchema = new mongoose.Schema({
 	},
 	epicno:{
 		type:Number,
+		minLength:10,
+        maxLength:10,
 	},
     img: 
     { 
         data: Buffer, 
         contentType: String ,
 		
-    } ,
-	
+    },
+	coordinates: { type : Array , "default" : [] },
 	city:{
 		type:String, 
 		
@@ -30,8 +32,8 @@ var imageSchema = new mongoose.Schema({
 	pincode:{
 		type: Number,
 		
-		minLength: 5,
-        maxLength: 5,
+		minLength: 6,
+        maxLength: 6,
 	},
 	email: {
         type: String,

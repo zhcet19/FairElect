@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(flash());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
-mongoose.connect('mongodb://localhost:27017/facebook', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://faiz:8HvPqhBazYsBwrG8@cluster0.kee2e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 // Set EJS as templating engine  
@@ -95,17 +95,20 @@ app.get('/images',isLoggedIn, (req, res) => {
 // Uploading the image 
 app.post('/images', upload.single('image'), (req, res, next) => { 
     
+    
     var obj = { 
         name: req.body.name, 
-        desc: req.body.desc, 
+        desc: req.body.desc,
+        email:req.body.email, 
+        epicno:req.body.epicno,
         img: { 
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)), 
             contentType: 'image/png'
         } ,
+        coordinates:[req.body.coordinates],
 		city:req.body.city,
 		state:req.body.state,
 		pincode:req.body.pincode,
-		email:req.body.email,
     } 
     
     imgModel.create(obj, (err, item) => { 
