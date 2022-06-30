@@ -12,13 +12,17 @@ var imgModel = require('./models/images');
 var flash= require("connect-flash");
 var methodOverride = require("method-override");
 var app= express();
+
+
+require('dotenv').config()
+
 //const MongoDBStore = require("connect") 
-//const dbUrl=process.env.DB_URL;
+const dbUrl=process.env.DB_URL;
 app.use(express.json());
 app.use(flash());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
-mongoose.connect('mongodb+srv://faiz:8HvPqhBazYsBwrG8@cluster0.kee2e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 // Set EJS as templating engine  
