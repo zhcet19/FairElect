@@ -1,17 +1,28 @@
 <%- include ('./partials/header') %>
 
 
-   <div id="map"></div>
-   <div>
-      <p style="color:red;">Coordinates</p>
-      <% items.forEach(function(image,index) { %> 
-         <p class="map-coordinates">
-           <%= image.coordinates %> 
-          </p>
+   <div id="map" style="margin-right:2rem; margin-left:2rem;"></div>
+   <div style="margin-right:2rem; margin-left:2rem;">
+      
+<h2>Complain Dashboard</h2>
+<h6>Total complaints received :- <%= items.length %> </h6>
 
-         <% }) %>  
-		</div>
+<table>
+ 
+  <tr>
+    <th style="color: #012970">Coordinates</th>
+    <th style="color:#012970">Timing</th>
+    <th style="color:#012970">Additional Information</th>
+  </tr>
+  <% items.forEach(function(image,index) { %> 
+  <tr>
+    <td class="map-coordinates"> <%= image.coordinates %> </td>
+    <td class="coordinates-timing"> <%= image.created.toDateString() %> </td>
+    <td><%= image.desc %></td>
+  </tr>
 
+  <% }) %>  
+</table>
 
          </div>
 
@@ -389,6 +400,7 @@
 
     let coordinates=[];
     let coor=document.getElementsByClassName('map-coordinates')
+    let timing=document.getElementsByClassName('coordinates-timing')
 
    
     for(let i=0;i<coor.length;i++)
@@ -398,13 +410,13 @@
        var second=nameArr[1];
       coordinates.push([parseFloat(first),parseFloat(second)]);
     }
-   console.log(coordinates)
-  
-      var marker = L.marker(coordinates[0]).addTo(map);
-      console.log(marker)
-     
-    
  
+     for(let i=0;i<coordinates.length;i++)
+     {
+      var marker = L.marker(coordinates[i]).addTo(map);
+      marker.bindPopup(`<b>Timing </b><br>${timing[i].innerHTML}`).openPopup();
+     }
+    
    </script>
 
 </body>
